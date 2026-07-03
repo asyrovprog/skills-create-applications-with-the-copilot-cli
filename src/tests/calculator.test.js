@@ -35,6 +35,10 @@ test('modulo returns remainder', () => {
   assert.equal(modulo(10, 3), 1);
 });
 
+test('modulo: 5 % 2 returns 1', () => {
+  assert.equal(modulo(5, 2), 1);
+});
+
 test('modulo throws for zero divisor', () => {
   assert.throws(() => modulo(10, 0), /Modulo by zero is not allowed\./);
 });
@@ -43,8 +47,28 @@ test('power returns base raised to exponent', () => {
   assert.equal(power(2, 4), 16);
 });
 
+test('power: 2 ^ 3 returns 8', () => {
+  assert.equal(power(2, 3), 8);
+});
+
+test('power: exponent 0 returns 1', () => {
+  assert.equal(power(5, 0), 1);
+});
+
+test('power: negative exponent returns fraction', () => {
+  assert.equal(power(2, -1), 0.5);
+});
+
 test('square root returns positive root', () => {
   assert.equal(squareRoot(81), 9);
+});
+
+test('square root: sqrt(16) returns 4', () => {
+  assert.equal(squareRoot(16), 4);
+});
+
+test('square root: sqrt(0) returns 0', () => {
+  assert.equal(squareRoot(0), 0);
 });
 
 test('square root throws for negative input', () => {
