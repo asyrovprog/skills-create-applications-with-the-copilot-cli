@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require('../calculator');
+const { add, subtract, multiply, divide, modulo, power, squareRoot } = require('../calculator');
 
 describe('add', () => {
   test('2 + 3 = 5 (example from calc-basic-operations.png)', () => {
@@ -101,5 +101,67 @@ describe('divide', () => {
 
   test('throws an error when dividing by zero', () => {
     expect(() => divide(5, 0)).toThrow('Division by zero is not allowed.');
+  });
+});
+
+describe('modulo', () => {
+  test('10 % 3 = 1', () => {
+    expect(modulo(10, 3)).toBe(1);
+  });
+
+  test('returns 0 when evenly divisible', () => {
+    expect(modulo(9, 3)).toBe(0);
+  });
+
+  test('works with negative dividend', () => {
+    expect(modulo(-10, 3)).toBe(-1);
+  });
+
+  test('works with decimal numbers', () => {
+    expect(modulo(5.5, 2)).toBeCloseTo(1.5);
+  });
+
+  test('throws an error when modulo by zero', () => {
+    expect(() => modulo(10, 0)).toThrow('Modulo by zero is not allowed.');
+  });
+});
+
+describe('power', () => {
+  test('2 ** 8 = 256', () => {
+    expect(power(2, 8)).toBe(256);
+  });
+
+  test('any number to the power of 0 is 1', () => {
+    expect(power(5, 0)).toBe(1);
+  });
+
+  test('any number to the power of 1 is itself', () => {
+    expect(power(7, 1)).toBe(7);
+  });
+
+  test('handles negative exponent', () => {
+    expect(power(2, -1)).toBeCloseTo(0.5);
+  });
+
+  test('handles fractional exponent (square root via power)', () => {
+    expect(power(9, 0.5)).toBeCloseTo(3);
+  });
+});
+
+describe('squareRoot', () => {
+  test('sqrt(16) = 4', () => {
+    expect(squareRoot(16)).toBe(4);
+  });
+
+  test('sqrt(0) = 0', () => {
+    expect(squareRoot(0)).toBe(0);
+  });
+
+  test('sqrt(2) is approximately 1.414', () => {
+    expect(squareRoot(2)).toBeCloseTo(1.414, 3);
+  });
+
+  test('throws an error for negative numbers', () => {
+    expect(() => squareRoot(-1)).toThrow('Square root of a negative number is not allowed.');
   });
 });
